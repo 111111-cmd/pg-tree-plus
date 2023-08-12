@@ -1,7 +1,7 @@
-let modInfo = {
-	name: "The ??? Tree",
+let modinfo = {
+	name: "pg Tree+",
 	id: "mymod",
-	author: "nobody",
+	author: "bdh2022",
 	pointsName: "points",
 	modFiles: ["layers.js", "tree.js"],
 
@@ -19,7 +19,7 @@ let VERSION = {
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0</h3><br>
-		- Added things.<br>
+		- Added prestige.<br>
 		- Added stuff.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
@@ -43,6 +43,13 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+
+	if(hasUpgrade("p", 11)) gain = gain.mul(2)
+	if(hasUpgrade("p", 12)) gain = gain.mul(2)
+	if(hasUpgrade("p", 13)) gain = gain.mul(3)
+	if(hasUpgrade("p", 14)) gain = gain.mul(3)
+	if(hasUpgrade("p", 15)) gain = gain.mul(4)
+
 	return gain
 }
 

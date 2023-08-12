@@ -15,6 +15,11 @@ addLayer("p", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
+        if(hasUpgrade("p", 21)) mult = mult.mul(2)
+        if(hasUpgrade("p", 22)) mult = mult.mul(3)
+        if(hasUpgrade("p", 23)) mult = mult.mul(3)
+        if(hasUpgrade("p", 24)) mult = mult.mul(9)
+        if(hasUpgrade("p", 25)) mult = mult.mul(20)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -24,5 +29,56 @@ addLayer("p", {
     hotkeys: [
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true}
-})
+    layerShown(){return true},
+    upgrades: {
+                  rows: 5
+                 ,cols: 5
+                 ,11: {
+                        description: "x2 points"
+                        ,cost: nodeShown(1)
+                 }
+                 ,12: {
+                        description: "x2 points"
+                        ,cost: nodeShown(5)        
+                        }
+                 ,13: {
+                        description: "x3 points"
+                        ,cost: nodeShown(15)       
+                 }
+                 ,14: {
+                        description: "x3 points"
+                        ,cost: nodeShown(35)
+                 }
+                 ,15: {
+                        description: "x4 points"
+                        ,cost: nodeShown(99)
+                 }
+                 ,21: {
+                        description: "x2 prestige points"
+                        ,cost: nodeShown(500)
+                        ,unlocked() {return hasUpgrade("p", 15)}
+                 
+                } 
+                ,22:  {
+                        description:  "x3 prestige points"
+                        ,cost: nodeShown(999)
+                        ,unlocked() {return hasUpgrade("p", 21)}
+                }
+                ,23:  {
+                        description: "x3 prestige points"
+                        ,cost: nodeShown(3000)
+                        ,unlocked() {return hasUpgrade("p", 22)}
+                }
+                ,24:  {
+                        description: "x9 prestige points"
+                        ,cost: nodeShown(9000)
+                        ,unlocked() {return hasUpgrade("p", 23)}
+                }
+                ,25:  {
+                        description: "x20 prestige points. Unlock a layer."
+                        ,cost: nodeShown(99999)
+                        ,unlocked() {return hasUpgrade("p", 24)}
+                }
+            } 
+        }
+)

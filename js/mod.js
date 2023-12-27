@@ -19,8 +19,7 @@ let VERSION = {
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0</h3><br>
-		- Added prestige.<br>
-		- Added stuff.`
+		- Added prestige.<br>`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -49,7 +48,7 @@ function getPointGen() {
 	if(hasUpgrade("p", 13)) gain = gain.mul(3)
 	if(hasUpgrade("p", 14)) gain = gain.mul(3)
 	if(hasUpgrade("p", 15)) gain = gain.mul(4)
-
+	if(hasUpgrade("e", 11)) gain = gain.mul(5)
 	return gain
 }
 
